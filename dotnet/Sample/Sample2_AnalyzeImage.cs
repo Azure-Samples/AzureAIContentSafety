@@ -3,16 +3,18 @@ using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
-    class ContentSafetySampleAnalyzeImage
+    static class ContentSafetySampleAnalyzeImage
     {
-        public void AnalyzeImage()
+        public static void AnalyzeImage()
         {
+            // Create Azure AI ContentSafety Client
+
             string endpoint = "<endpoint>";
             string key = "<apiKey>";
 
             ContentSafetyClient client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(key));
 
-            #region Snippet:Azure_AI_ContentSafety_AnalyzeImage
+            // Example: analyze image
 
             string imagePath = @"sample_data\image.jpg";
             ImageData image = new ImageData() { Content = BinaryData.FromBytes(File.ReadAllBytes(imagePath)) };
@@ -35,8 +37,6 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
             Console.WriteLine("SelfHarm severity: {0}", response.Value.SelfHarmResult?.Severity ?? 0);
             Console.WriteLine("Sexual severity: {0}", response.Value.SexualResult?.Severity ?? 0);
             Console.WriteLine("Violence severity: {0}", response.Value.ViolenceResult?.Severity ?? 0);
-
-            #endregion Snippet:Azure_AI_ContentSafety_AnalyzeImage
         }
     }
 }

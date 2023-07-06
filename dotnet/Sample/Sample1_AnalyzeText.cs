@@ -2,20 +2,18 @@ using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
-    class ContentSafetySampleAnalyzeText
+    static class ContentSafetySampleAnalyzeText
     {
-        public void AnalyzeText()
+        public static void AnalyzeText()
         {
-            #region Snippet:Azure_AI_ContentSafety_CreateClient
+            // Create Azure AI ContentSafety Client
 
             string endpoint = "<endpoint>";
             string key = "<apiKey>";
 
             ContentSafetyClient client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(key));
 
-            #endregion Snippet:Azure_AI_ContentSafety_CreateClient
-
-            #region Snippet:Azure_AI_ContentSafety_AnalyzeText
+            // Example: analyze text without blocklist
 
             string text = "You are an idiot";
 
@@ -37,8 +35,6 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
             Console.WriteLine("SelfHarm severity: {0}", response.Value.SelfHarmResult?.Severity ?? 0);
             Console.WriteLine("Sexual severity: {0}", response.Value.SexualResult?.Severity ?? 0);
             Console.WriteLine("Violence severity: {0}", response.Value.ViolenceResult?.Severity ?? 0);
-
-            #endregion Snippet:Azure_AI_ContentSafety_AnalyzeText
         }
     }
 }

@@ -6,14 +6,11 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
     {
         static void Main()
         {
-            ContentSafetySampleAnalyzeText sampleAnalyzeText = new ContentSafetySampleAnalyzeText();
-            sampleAnalyzeText.AnalyzeText();
+            ContentSafetySampleAnalyzeText.AnalyzeText();
 
-            ContentSafetySampleAnalyzeImage sampleAnalyzeImage = new ContentSafetySampleAnalyzeImage();
-            sampleAnalyzeImage.AnalyzeImage();
+            ContentSafetySampleAnalyzeImage.AnalyzeImage();
 
-            ContentSafetySampleManageBlocklist sampleManageBlocklist = new ContentSafetySampleManageBlocklist();
-            sampleManageBlocklist.ManageBlocklist();
+            ContentSafetySampleManageBlocklist.ManageBlocklist();
 
             Console.ReadLine();
         }
