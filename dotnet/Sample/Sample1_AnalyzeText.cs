@@ -1,7 +1,4 @@
-using System;
-using System.IO;
-using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
+using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
@@ -35,6 +32,7 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
                 throw;
             }
 
+            Console.WriteLine("\nAnalyze text succeeded:");
             Console.WriteLine("Hate severity: {0}", response.Value.HateResult?.Severity ?? 0);
             Console.WriteLine("SelfHarm severity: {0}", response.Value.SelfHarmResult?.Severity ?? 0);
             Console.WriteLine("Sexual severity: {0}", response.Value.SexualResult?.Severity ?? 0);

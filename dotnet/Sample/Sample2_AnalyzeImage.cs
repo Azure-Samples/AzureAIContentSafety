@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.IO;
+using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
@@ -13,8 +14,8 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
 
             #region Snippet:Azure_AI_ContentSafety_AnalyzeImage
 
-            string datapath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "sample_data", "image.jpg");
-            ImageData image = new ImageData() { Content = BinaryData.FromBytes(File.ReadAllBytes(datapath)) };
+            string imagePath = @"sample_data\image.jpg";
+            ImageData image = new ImageData() { Content = BinaryData.FromBytes(File.ReadAllBytes(imagePath)) };
 
             var request = new AnalyzeImageOptions(image);
 
@@ -29,6 +30,7 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
                 throw;
             }
 
+            Console.WriteLine("\nAnalyze image succeeded:");
             Console.WriteLine("Hate severity: {0}", response.Value.HateResult?.Severity ?? 0);
             Console.WriteLine("SelfHarm severity: {0}", response.Value.SelfHarmResult?.Severity ?? 0);
             Console.WriteLine("Sexual severity: {0}", response.Value.SexualResult?.Severity ?? 0);

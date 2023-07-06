@@ -1,8 +1,5 @@
 ﻿using Azure.Core;
-using System;
-using System.IO;
-using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
+using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {

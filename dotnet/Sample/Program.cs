@@ -14,6 +14,8 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
 
             ContentSafetySampleManageBlocklist sampleManageBlocklist = new ContentSafetySampleManageBlocklist();
             sampleManageBlocklist.ManageBlocklist();
+
+            Console.ReadLine();
         }
     }
 }
