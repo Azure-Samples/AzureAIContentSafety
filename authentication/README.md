@@ -21,7 +21,7 @@ HttpClient client = new();
 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "[Your API Key]");
 ```
 
-If you are using Azure AI Content Safety SDK, you should create an `AzureKeyCredential` with this key, then construct the `ContentSafetyClient`. In dotnet SDK it may look like:
+If you are using Azure AI Content Safety SDK, you should create an [`AzureKeyCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.azurekeycredential?view=azure-dotnet) with this key, then construct the `ContentSafetyClient`. In dotnet SDK it may look like:
 
 ```csharp
 string endpoint = "[Your endpoint]";
