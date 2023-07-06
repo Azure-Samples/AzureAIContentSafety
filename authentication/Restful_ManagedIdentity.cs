@@ -10,9 +10,6 @@ namespace ACSAuthentication
         {
             using HttpClient client = new();
 
-            // Key authentication
-            //client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "[Your API Key]");
-
             // System assigned managed identity authentication
             var credential = new ManagedIdentityCredential();
             var context = new TokenRequestContext(scopes: new[] { "https://cognitiveservices.azure.com/.default" }, tenantId: "[Your tenant id]");
