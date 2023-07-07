@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 def analyze_text():
-    # [START analyze_text]
+    # analyze text
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -44,8 +44,6 @@ def analyze_text():
         print(f"Sexual severity: {response.sexual_result.severity}")
     if response.violence_result:
         print(f"Violence severity: {response.violence_result.severity}")
-
-    # [END analyze_text]
 
 if __name__ == "__main__":
     analyze_text()

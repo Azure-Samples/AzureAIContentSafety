@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 def create_or_update_text_blocklist():
-    # [START create_or_update_text_blocklist]
+    # create or update text blocklist]
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -37,10 +37,8 @@ def create_or_update_text_blocklist():
         print(e)
         raise
 
-    # [END create_or_update_text_blocklist]
-
 def add_block_items():
-    # [START add_block_items]
+    # add block items
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -80,10 +78,8 @@ def add_block_items():
         print(e)
         raise
 
-    # [END add_block_items]
-
 def analyze_text_with_blocklists():
-    # [START analyze_text_with_blocklists]
+    # analyze text with blocklists
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -117,10 +113,8 @@ def analyze_text_with_blocklists():
         print(e)
         raise
 
-    # [END analyze_text_with_blocklists]
-
 def list_text_blocklists():
-    # [START list_text_blocklists]
+    # list text blocklists]
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -148,10 +142,8 @@ def list_text_blocklists():
         print(e)
         raise
 
-    # [END list_text_blocklists]
-
 def get_text_blocklist():
-    # [START get_text_blocklist]
+    # get text blocklist
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -180,10 +172,8 @@ def get_text_blocklist():
         print(e)
         raise
 
-    # [END get_text_blocklist]
-
 def list_block_items():
-    # [START list_block_items]
+    # list block items
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -213,10 +203,8 @@ def list_block_items():
         print(e)
         raise
 
-    # [END list_block_items]
-
 def get_block_item():
-    # [START get_block_item]
+    # get block item
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -259,10 +247,8 @@ def get_block_item():
         print(e)
         raise
 
-    # [END get_block_item]
-
 def remove_block_items():
-    # [START remove_block_items]
+    # remove block items
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -308,10 +294,8 @@ def remove_block_items():
         print(e)
         raise
 
-    # [END remove_block_items]
-
 def delete_blocklist():
-    # [START delete_blocklist]
+    # delete blocklist
 
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -337,8 +321,6 @@ def delete_blocklist():
             raise
         print(e)
         raise
-
-    # [END delete_blocklist]
 
 if __name__ == "__main__":
     create_or_update_text_blocklist()

@@ -8,7 +8,7 @@
 import asyncio
 
 async def analyze_image_async():
-    # [START analyze_image_async]
+    # analyze image async
 
     import os
     from azure.ai.contentsafety.aio import ContentSafetyClient
@@ -48,8 +48,6 @@ async def analyze_image_async():
         print(f"Sexual severity: {response.sexual_result.severity}")
     if response.violence_result:
         print(f"Violence severity: {response.violence_result.severity}")
-
-    # [END analyze_image_async]
 
 async def main():
     await analyze_image_async()

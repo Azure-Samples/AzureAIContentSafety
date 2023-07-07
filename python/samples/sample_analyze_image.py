@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 def analyze_image():
-    # [START analyze_image]
+    # analyze image
     
     import os
     from azure.ai.contentsafety import ContentSafetyClient
@@ -46,9 +46,6 @@ def analyze_image():
         print(f"Sexual severity: {response.sexual_result.severity}")
     if response.violence_result:
         print(f"Violence severity: {response.violence_result.severity}")
-
-    # [END analyze_image]
-
 
 if __name__ == "__main__":
     analyze_image()
