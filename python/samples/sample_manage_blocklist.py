@@ -7,8 +7,7 @@
 # --------------------------------------------------------------------------
 
 def create_or_update_text_blocklist():
-    # create or update text blocklist]
-
+    # create or update text blocklist
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -39,7 +38,6 @@ def create_or_update_text_blocklist():
 
 def add_block_items():
     # add block items
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -80,7 +78,6 @@ def add_block_items():
 
 def analyze_text_with_blocklists():
     # analyze text with blocklists
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -114,8 +111,7 @@ def analyze_text_with_blocklists():
         raise
 
 def list_text_blocklists():
-    # list text blocklists]
-
+    # list text blocklists
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -144,7 +140,6 @@ def list_text_blocklists():
 
 def get_text_blocklist():
     # get text blocklist
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -174,7 +169,6 @@ def get_text_blocklist():
 
 def list_block_items():
     # list block items
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -205,7 +199,6 @@ def list_block_items():
 
 def get_block_item():
     # get block item
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -249,7 +242,6 @@ def get_block_item():
 
 def remove_block_items():
     # remove block items
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential
@@ -296,7 +288,6 @@ def remove_block_items():
 
 def delete_blocklist():
     # delete blocklist
-
     import os
     from azure.ai.contentsafety import ContentSafetyClient
     from azure.core.credentials import AzureKeyCredential

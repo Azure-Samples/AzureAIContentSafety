@@ -6,16 +6,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import asyncio
+import os
+from azure.ai.contentsafety.aio import ContentSafetyClient
+from azure.core.credentials import AzureKeyCredential
+from azure.core.exceptions import HttpResponseError
+from azure.ai.contentsafety.models import AnalyzeTextOptions
 
 async def analyze_text_async():
-    # analyze text async]
-
-    import os
-    from azure.ai.contentsafety.aio import ContentSafetyClient
-    from azure.core.credentials import AzureKeyCredential
-    from azure.core.exceptions import HttpResponseError
-    from azure.ai.contentsafety.models import AnalyzeTextOptions
-
+    # analyze text async
     key = os.environ["CONTENT_SAFETY_KEY"]
     endpoint = os.environ["CONTENT_SAFETY_ENDPOINT"]
 

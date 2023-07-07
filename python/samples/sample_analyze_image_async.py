@@ -6,16 +6,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import asyncio
+import os
+from azure.ai.contentsafety.aio import ContentSafetyClient
+from azure.core.credentials import AzureKeyCredential
+from azure.core.exceptions import HttpResponseError
+from azure.ai.contentsafety.models import AnalyzeImageOptions, ImageData
 
 async def analyze_image_async():
     # analyze image async
-
-    import os
-    from azure.ai.contentsafety.aio import ContentSafetyClient
-    from azure.core.credentials import AzureKeyCredential
-    from azure.core.exceptions import HttpResponseError
-    from azure.ai.contentsafety.models import AnalyzeImageOptions, ImageData
-
     key = os.environ["CONTENT_SAFETY_KEY"]
     endpoint = os.environ["CONTENT_SAFETY_ENDPOINT"]
     image_path = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "./sample_data/image.jpg"))
