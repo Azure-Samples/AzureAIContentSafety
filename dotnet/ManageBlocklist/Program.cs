@@ -3,14 +3,14 @@ using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
-    static class ContentSafetySampleManageBlocklist
+    class ContentSafetySampleManageBlocklist
     {
         public static void ManageBlocklist()
         {
             // Create Azure AI ContentSafety Client
 
-            string endpoint = "<endpoint>";
-            string key = "<apiKey>";
+            string endpoint = Environment.GetEnvironmentVariable("CONTENT_SAFETY_ENDPOINT");
+            string key = Environment.GetEnvironmentVariable("CONTENT_SAFETY_KEY");
 
             ContentSafetyClient client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(key));
 
@@ -132,6 +132,11 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
                 Console.WriteLine("\nDeleted blocklist.");
             }
         }
+
+        static void Main()
+        {             
+            ManageBlocklist();
+         }
     }
 }
 
