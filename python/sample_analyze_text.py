@@ -19,7 +19,7 @@ def analyze_text():
     # Create an Content Safety client
     client = ContentSafetyClient(endpoint, AzureKeyCredential(key))
 
-    # Contruct request
+    # Construct a request
     request = AnalyzeTextOptions(text="You are an idiot")
 
     # Analyze text
