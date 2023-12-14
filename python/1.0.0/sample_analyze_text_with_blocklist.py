@@ -45,7 +45,7 @@ def create_or_update_text_blocklist():
     # [END create_or_update_text_blocklist]
 
 
-# Sample: Add blocklistItems to the list
+# Sample: Add blocklistItems to the blocklist
 def add_blocklist_items():
     import os
     from azure.ai.contentsafety import BlocklistClient
