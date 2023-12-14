@@ -73,7 +73,7 @@ def add_blocklist_items():
                 f"BlockItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, Description: {block_item.description}"
             )
     except HttpResponseError as e:
-        print("\nAdd block items failed: ")
+        print("\nAdd blocklist items failed: ")
         if e.error:
             print(f"Error code: {e.error.code}")
             print(f"Error message: {e.error.message}")

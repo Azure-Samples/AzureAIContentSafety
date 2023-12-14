@@ -73,7 +73,7 @@ def add_blocklist_items():
                 f"BlockItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, Description: {block_item.description}"
             )
     except HttpResponseError as e:
-        print("\nAdd block items failed: ")
+        print("\nAdd blocklistItems failed: ")
         if e.error:
             print(f"Error code: {e.error.code}")
             print(f"Error message: {e.error.message}")
@@ -239,10 +239,10 @@ def get_blocklist_item():
             options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=[TextBlocklistItem(text=block_item_text_1)]),
         )
         if not add_result or not add_result.blocklist_items or len(add_result.blocklist_items) <= 0:
-            raise RuntimeError("BlockItem not created.")
+            raise RuntimeError("BlocklistItem not created.")
         block_item_id = add_result.blocklist_items[0].blocklist_item_id
 
-        # Get this blockItem by blockItemId
+        # Get this blocklistItem by blockItemId
         block_item = client.get_text_blocklist_item(blocklist_name=blocklist_name, blocklist_item_id=block_item_id)
         print("\nGet blocklistItem: ")
         print(

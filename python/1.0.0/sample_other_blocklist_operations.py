@@ -123,10 +123,10 @@ def get_blocklist_item():
             options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=[TextBlocklistItem(text=block_item_text_1)]),
         )
         if not add_result or not add_result.blocklist_items or len(add_result.blocklist_items) <= 0:
-            raise RuntimeError("BlockItem not created.")
+            raise RuntimeError("BlocklistItem not created.")
         block_item_id = add_result.blocklist_items[0].blocklist_item_id
 
-        # Get this blockItem by blockItemId
+        # Get this blocklistItem by blockItemId
         block_item = client.get_text_blocklist_item(blocklist_name=blocklist_name, blocklist_item_id=block_item_id)
         print("\nGet blocklistItem: ")
         print(

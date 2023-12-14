@@ -34,7 +34,7 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
                 Console.WriteLine("\nBlocklist {0} updated.", blocklistName);
             }
 
-            // Sample: Add blocklistItems to the list
+            // Sample: Add blocklistItems to the blocklist
 
             string blocklistItemText1 = "k*ll";
             string blocklistItemText2 = "h*te";
@@ -44,10 +44,10 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
 
             if (addedBlocklistItems != null && addedBlocklistItems.Value != null)
             {
-                Console.WriteLine("\nBlockItems added:");
+                Console.WriteLine("\nBlocklistItems added:");
                 foreach (var addedBlocklistItem in addedBlocklistItems.Value.BlocklistItems)
                 {
-                    Console.WriteLine("BlockItemId: {0}, Text: {1}, Description: {2}", addedBlocklistItem.BlocklistItemId, addedBlocklistItem.Text, addedBlocklistItem.Description);
+                    Console.WriteLine("BlocklistItemId: {0}, Text: {1}, Description: {2}", addedBlocklistItem.BlocklistItemId, addedBlocklistItem.Text, addedBlocklistItem.Description);
                 }
             }
 

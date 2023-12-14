@@ -15,11 +15,11 @@
 
             // Sample: List all blocklistItems in a blocklist
 
-            var allBlockitems = blocklistClient.GetTextBlocklistItems(blocklistName);
-            Console.WriteLine("\nList BlockItems:");
-            foreach (var blocklistItem in allBlockitems)
+            var allBlocklistitems = blocklistClient.GetTextBlocklistItems(blocklistName);
+            Console.WriteLine("\nList BlocklistItems:");
+            foreach (var blocklistItem in allBlocklistitems)
             {
-                Console.WriteLine("BlockItemId: {0}, Text: {1}, Description: {2}", blocklistItem.BlocklistItemId, blocklistItem.Text, blocklistItem.Description);
+                Console.WriteLine("BlocklistItemId: {0}, Text: {1}, Description: {2}", blocklistItem.BlocklistItemId, blocklistItem.Text, blocklistItem.Description);
             }
 
 
@@ -52,26 +52,26 @@
 
             if (addedBlocklistItems != null && addedBlocklistItems.Value != null)
             {
-                Console.WriteLine("\nBlockItems added:");
+                Console.WriteLine("\nBlocklistItems added:");
                 foreach (var addedBlocklistItem in addedBlocklistItems.Value.BlocklistItems)
                 {
-                    Console.WriteLine("BlockItemId: {0}, Text: {1}, Description: {2}", addedBlocklistItem.BlocklistItemId, addedBlocklistItem.Text, addedBlocklistItem.Description);
+                    Console.WriteLine("BlocklistItemId: {0}, Text: {1}, Description: {2}", addedBlocklistItem.BlocklistItemId, addedBlocklistItem.Text, addedBlocklistItem.Description);
                 }
             }
-            var getBlockItemId = addedBlocklistItems.Value.BlocklistItems[0].BlocklistItemId;
-            var getBlockItem = blocklistClient.GetTextBlocklistItem(blocklistName, getBlockItemId);
-            Console.WriteLine("\nGet BlockItem:");
-            Console.WriteLine("BlockItemId: {0}, Text: {1}, Description: {2}", getBlockItem.Value.BlocklistItemId, getBlockItem.Value.Text, getBlockItem.Value.Description);
+            var getBlocklistItemId = addedBlocklistItems.Value.BlocklistItems[0].BlocklistItemId;
+            var getBlocklistItem = blocklistClient.GetTextBlocklistItem(blocklistName, getBlocklistItemId);
+            Console.WriteLine("\nGet BlocklistItem:");
+            Console.WriteLine("BlocklistItemId: {0}, Text: {1}, Description: {2}", getBlocklistItem.Value.BlocklistItemId, getBlocklistItem.Value.Text, getBlocklistItem.Value.Description);
 
             // Sample: Remove blocklistItems from a blocklist
 
-            var removeBlockItemId = addedBlocklistItems.Value.BlocklistItems[0].BlocklistItemId;
-            var removeBlockItemIds = new List<string> { removeBlockItemId };
-            var removeResult = blocklistClient.RemoveBlocklistItems(blocklistName, new RemoveTextBlocklistItemsOptions(removeBlockItemIds));
+            var removeBlocklistItemId = addedBlocklistItems.Value.BlocklistItems[0].BlocklistItemId;
+            var removeBlocklistItemIds = new List<string> { removeBlocklistItemId };
+            var removeResult = blocklistClient.RemoveBlocklistItems(blocklistName, new RemoveTextBlocklistItemsOptions(removeBlocklistItemIds));
 
             if (removeResult != null && removeResult.Status == 204)
             {
-                Console.WriteLine("\nBlockItem removed: {0}.", removeBlockItemId);
+                Console.WriteLine("\nBlocklistItem removed: {0}.", removeBlocklistItemId);
             }
 
             // Sample: Delete a list and all of its contents
