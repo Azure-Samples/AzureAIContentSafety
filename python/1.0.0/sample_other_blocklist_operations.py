@@ -25,10 +25,10 @@ def list_blocklist_items():
         blocklist_items = client.list_text_blocklist_items(blocklist_name=blocklist_name)
         if blocklist_items:
             print("\nList blocklist items: ")
-            for block_item in blocklist_items:
+            for blocklist_item in blocklist_items:
                 print(
-                    f"BlocklistItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, "
-                    f"Description: {block_item.description}"
+                    f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, "
+                    f"Description: {blocklist_item.description}"
                 )
     except HttpResponseError as e:
         print("\nList blocklist items failed: ")
@@ -127,10 +127,10 @@ def get_blocklist_item():
         block_item_id = add_result.blocklist_items[0].blocklist_item_id
 
         # Get this blocklistItem by blockItemId
-        block_item = client.get_text_blocklist_item(blocklist_name=blocklist_name, blocklist_item_id=block_item_id)
+        blocklist_item = client.get_text_blocklist_item(blocklist_name=blocklist_name, blocklist_item_id=block_item_id)
         print("\nGet blocklistItem: ")
         print(
-            f"BlocklistItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, Description: {block_item.description}"
+            f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, Description: {blocklist_item.description}"
         )
     except HttpResponseError as e:
         print("\nGet blocklist item failed: ")

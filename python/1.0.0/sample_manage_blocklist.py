@@ -60,17 +60,17 @@ def add_blocklist_items():
     client = BlocklistClient(endpoint, AzureKeyCredential(key))
 
     blocklist_name = "TestBlocklist"
-    block_item_text_1 = "k*ll"
-    block_item_text_2 = "h*te"
+    blocklist_item_text_1 = "k*ll"
+    blocklist_item_text_2 = "h*te"
 
-    block_items = [TextBlocklistItem(text=block_item_text_1), TextBlocklistItem(text=block_item_text_2)]
+    blocklist_items = [TextBlocklistItem(text=blocklist_item_text_1), TextBlocklistItem(text=blocklist_item_text_2)]
     try:
         result = client.add_or_update_blocklist_items(
-            blocklist_name=blocklist_name, options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=block_items)
+            blocklist_name=blocklist_name, options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=blocklist_items)
         )
-        for block_item in result.blocklist_items:
+        for blocklist_item in result.blocklist_items:
             print(
-                f"BlockItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, Description: {block_item.description}"
+                f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, Description: {blocklist_item.description}"
             )
     except HttpResponseError as e:
         print("\nAdd blocklistItems failed: ")
@@ -109,8 +109,8 @@ def analyze_text_with_blocklists():
             print("\nBlocklist match results: ")
             for match_result in analysis_result.blocklists_match:
                 print(
-                    f"BlocklistName: {match_result.blocklist_name}, BlockItemId: {match_result.blocklist_item_id}, "
-                    f"BlockItemText: {match_result.blocklist_item_text}"
+                    f"BlocklistName: {match_result.blocklist_name}, BlocklistItemId: {match_result.blocklist_item_id}, "
+                    f"BlocklistItemText: {match_result.blocklist_item_text}"
                 )
     except HttpResponseError as e:
         print("\nAnalyze text failed: ")
@@ -141,10 +141,10 @@ def list_blocklist_items():
         blocklist_items = client.list_text_blocklist_items(blocklist_name=blocklist_name)
         if blocklist_items:
             print("\nList blocklist items: ")
-            for block_item in blocklist_items:
+            for blocklist_item in blocklist_items:
                 print(
-                    f"BlocklistItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, "
-                    f"Description: {block_item.description}"
+                    f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, "
+                    f"Description: {blocklist_item.description}"
                 )
     except HttpResponseError as e:
         print("\nList blocklist items failed: ")
@@ -240,13 +240,13 @@ def get_blocklist_item():
         )
         if not add_result or not add_result.blocklist_items or len(add_result.blocklist_items) <= 0:
             raise RuntimeError("BlocklistItem not created.")
-        block_item_id = add_result.blocklist_items[0].blocklist_item_id
+        blocklist_item_id = add_result.blocklist_items[0].blocklist_item_id
 
-        # Get this blocklistItem by blockItemId
-        block_item = client.get_text_blocklist_item(blocklist_name=blocklist_name, blocklist_item_id=block_item_id)
+        # Get this blocklistItem by blocklistItemId
+        blocklist_item = client.get_text_blocklist_item(blocklist_name=blocklist_name, blocklist_item_id=blocklist_item_id)
         print("\nGet blocklistItem: ")
         print(
-            f"BlocklistItemId: {block_item.blocklist_item_id}, Text: {block_item.text}, Description: {block_item.description}"
+            f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, Description: {blocklist_item.description}"
         )
     except HttpResponseError as e:
         print("\nGet blocklist item failed: ")
