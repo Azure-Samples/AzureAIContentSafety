@@ -230,13 +230,13 @@ def get_blocklist_item():
     client = BlocklistClient(endpoint, AzureKeyCredential(key))
 
     blocklist_name = "TestBlocklist"
-    block_item_text_1 = "k*ll"
+    blocklist_item_text_1 = "k*ll"
 
     try:
         # Add a blocklistItem
         add_result = client.add_or_update_blocklist_items(
             blocklist_name=blocklist_name,
-            options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=[TextBlocklistItem(text=block_item_text_1)]),
+            options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=[TextBlocklistItem(text=blocklist_item_text_1)]),
         )
         if not add_result or not add_result.blocklist_items or len(add_result.blocklist_items) <= 0:
             raise RuntimeError("BlocklistItem not created.")
@@ -277,21 +277,21 @@ def remove_blocklist_items():
     client = BlocklistClient(endpoint, AzureKeyCredential(key))
 
     blocklist_name = "TestBlocklist"
-    block_item_text_1 = "k*ll"
+    blocklist_item_text_1 = "k*ll"
 
     try:
         # Add a blocklistItem
         add_result = client.add_or_update_blocklist_items(
             blocklist_name=blocklist_name,
-            options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=[TextBlocklistItem(text=block_item_text_1)]),
+            options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=[TextBlocklistItem(text=blocklist_item_text_1)]),
         )
         if not add_result or not add_result.blocklist_items or len(add_result.blocklist_items) <= 0:
             raise RuntimeError("BlocklistItem not created.")
-        block_item_id = add_result.blocklist_items[0].blocklist_item_id
+        blocklist_item_id = add_result.blocklist_items[0].blocklist_item_id
 
         # Remove this blocklistItem by blocklistItemId
         client.remove_blocklist_items(
-            blocklist_name=blocklist_name, options=RemoveTextBlocklistItemsOptions(blocklist_item_ids=[block_item_id])
+            blocklist_name=blocklist_name, options=RemoveTextBlocklistItemsOptions(blocklist_item_ids=[blocklist_item_id])
         )
         print(f"\nRemoved blocklistItem: {add_result.blocklist_items[0].blocklist_item_id}")
     except HttpResponseError as e:
