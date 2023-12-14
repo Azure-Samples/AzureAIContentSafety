@@ -18,7 +18,7 @@ const key = process.env["CONTENT_SAFETY_API_KEY"] || "<key>";
 const credential = new AzureKeyCredential(key);
 const client = ContentSafetyClient(endpoint, credential);
 
-// Create or modify a blocklist
+// Sample: Create or modify a blocklist
 async function createOrUpdateTextBlocklist() {
   const blocklistName = "TestBlocklist";
   const blocklistDescription = "Test blocklist management.";
@@ -38,28 +38,28 @@ async function createOrUpdateTextBlocklist() {
   }
 
   console.log(
-    "Blocklist created or updated: Name",
+    "Blocklist created or updated. Name: ",
     result.body.blocklistName,
     ", Description: ",
     result.body.description
   );
 }
 
-// Add blocklistItems to the list
-async function addBlockItems() {
+// Sample: Add blocklistItems to the list
+async function addBlocklistItems() {
   const blocklistName = "TestBlocklist";
-  const blockItemText1 = "sample";
-  const blockItemText2 = "text";
+  const blocklistItemText1 = "sample";
+  const blocklistItemText2 = "text";
   const addOrUpdateBlocklistItemsParameters = {
     body: {
       blocklistItems: [
         {
-          description: "Test block item 1",
-          text: blockItemText1,
+          description: "Test blocklist item 1",
+          text: blocklistItemText1,
         },
         {
-          description: "Test block item 2",
-          text: blockItemText2,
+          description: "Test blocklist item 2",
+          text: blocklistItemText2,
         },
       ],
     },
@@ -73,22 +73,22 @@ async function addBlockItems() {
     throw result;
   }
 
-  console.log("Block items added: ");
+  console.log("Blocklist items added: ");
   if (result.body.blocklistItems) {
-    for (const blockItem of result.body.blocklistItems) {
+    for (const blocklistItem of result.body.blocklistItems) {
       console.log(
-        "BlockItemId: ",
-        blockItem.blocklistItemId,
+        "BlocklistItemId: ",
+        blocklistItem.blocklistItemId,
         ", Text: ",
-        blockItem.text,
+        blocklistItem.text,
         ", Description: ",
-        blockItem.description
+        blocklistItem.description
       );
     }
   }
 }
 
-// Analyze text with a blocklist
+// Sample: Analyze text with a blocklist
 async function analyzeTextWithBlocklists() {
   const blocklistName = "TestBlocklist";
   const inputText = "This is a sample to test text with blocklist.";
@@ -112,9 +112,9 @@ async function analyzeTextWithBlocklists() {
       console.log(
         "BlocklistName: ",
         blocklistMatchResult.blocklistName,
-        ", BlockItemId: ",
+        ", BlocklistItemId: ",
         blocklistMatchResult.blocklistItemId,
-        ", BlockItemText: ",
+        ", BlocklistItemText: ",
         blocklistMatchResult.blocklistItemText
       );
     }
@@ -123,7 +123,7 @@ async function analyzeTextWithBlocklists() {
 
 (async () => {
   await createOrUpdateTextBlocklist();
-  await addBlockItems();
+  await addBlocklistItems();
   await analyzeTextWithBlocklists();
 })().catch((err) => {
   console.error("The sample encountered an error:", err);
