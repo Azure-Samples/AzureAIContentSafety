@@ -2,9 +2,9 @@
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
-    class ContentSafetySampleManageBlocklist
+    class ContentSafetySampleAnalyzeTextWithBlocklist
     {
-        public static void ManageBlocklist()
+        public static void AnalyzeTextWithBlocklist()
         {
             // Create Azure AI ContentSafety Client
 
@@ -77,65 +77,11 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
                     Console.WriteLine("BlocklistName: {0}, BlocklistItemId: {1}, BlocklistText: {2}, ", matchResult.BlocklistName, matchResult.BlocklistItemId, matchResult.BlocklistItemText);
                 }
             }
-
-            // Example: list blocklists
-
-            var blocklists = blocklistClient.GetTextBlocklists();
-            Console.WriteLine("\nList blocklists:");
-            foreach (var blocklist in blocklists)
-            {
-                Console.WriteLine("BlocklistName: {0}, Description: {1}", blocklist.Name, blocklist.Description);
-            }
-
-            // Example: get blocklist
-
-            var getBlocklist = blocklistClient.GetTextBlocklist(blocklistName);
-            if (getBlocklist != null && getBlocklist.Value != null)
-            {
-                Console.WriteLine("\nGet blocklist:");
-                Console.WriteLine("BlocklistName: {0}, Description: {1}", getBlocklist.Value.Name, getBlocklist.Value.Description);
-            }
-
-            // Example: list blocklistItems
-
-            var allBlockitems = blocklistClient.GetTextBlocklistItems(blocklistName);
-            Console.WriteLine("\nList BlockItems:");
-            foreach (var blocklistItem in allBlockitems)
-            {
-                Console.WriteLine("BlockItemId: {0}, Text: {1}, Description: {2}", blocklistItem.BlocklistItemId, blocklistItem.Text, blocklistItem.Description);
-            }
-
-            // Example: get blocklistItem
-
-            var getBlockItemId = addedBlocklistItems.Value.BlocklistItems[0].BlocklistItemId;
-            var getBlockItem = blocklistClient.GetTextBlocklistItem(blocklistName, getBlockItemId);
-            Console.WriteLine("\nGet BlockItem:");
-            Console.WriteLine("BlockItemId: {0}, Text: {1}, Description: {2}", getBlockItem.Value.BlocklistItemId, getBlockItem.Value.Text, getBlockItem.Value.Description);
-
-            // Example: remove blocklistItems
-
-            var removeBlockItemId = addedBlocklistItems.Value.BlocklistItems[0].BlocklistItemId;
-            var removeBlockItemIds = new List<string> { removeBlockItemId };
-            var removeResult = blocklistClient.RemoveBlocklistItems(blocklistName, new RemoveTextBlocklistItemsOptions(removeBlockItemIds));
-
-            if (removeResult != null && removeResult.Status == 204)
-            {
-                Console.WriteLine("\nBlockItem removed: {0}.", removeBlockItemId);
-            }
-
-            // Example: delete blocklist
-
-            var deleteResult = blocklistClient.DeleteTextBlocklist(blocklistName);
-            if (deleteResult != null && deleteResult.Status == 204)
-            {
-                Console.WriteLine("\nDeleted blocklist.");
-            }
         }
 
         static void Main()
-        {             
-            ManageBlocklist();
+        {
+            AnalyzeTextWithBlocklist();
         }
     }
 }
-

@@ -13,6 +13,7 @@ from azure.core.credentials import AzureKeyCredential
 from azure.core.exceptions import HttpResponseError
 
 
+# Sample: Analyze image in sync request
 def analyze_image():
     # analyze image
     key = os.environ["CONTENT_SAFETY_KEY"]

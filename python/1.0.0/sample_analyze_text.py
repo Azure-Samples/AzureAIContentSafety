@@ -12,6 +12,7 @@ from azure.core.exceptions import HttpResponseError
 from azure.ai.contentsafety.models import AnalyzeTextOptions, TextCategory
 
 
+# Sample: Analyze text in sync request
 def analyze_text():
     # analyze text
     key = os.environ["CONTENT_SAFETY_KEY"]

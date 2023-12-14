@@ -1,22 +1,17 @@
-﻿using System;
-using System.Reflection;
-using System.Reflection.Metadata;
-using Azure.AI.ContentSafety;
-
-namespace Azure.AI.ContentSafety.Dotnet.Sample
+﻿namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
     class ContentSafetySampleAnalyzeImage
     {
+        // Sample: Analyze image
         public static void AnalyzeImage()
         {
             // Create Azure AI ContentSafety Client
 
             string endpoint = Environment.GetEnvironmentVariable("CONTENT_SAFETY_ENDPOINT");
-            string key = Environment.GetEnvironmentVariable("CONTENT_SAFETY_KEY") ;
+            string key = Environment.GetEnvironmentVariable("CONTENT_SAFETY_KEY");
 
             ContentSafetyClient client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(key));
 
-            // Example: analyze image
             string imagePath = @"sample_data\image.jpg";
             ContentSafetyImageData image = new ContentSafetyImageData(BinaryData.FromBytes(File.ReadAllBytes(imagePath)));
 

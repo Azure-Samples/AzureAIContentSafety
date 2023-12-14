@@ -13,6 +13,7 @@ from azure.core.exceptions import HttpResponseError
 from azure.ai.contentsafety.models import AnalyzeImageOptions, ImageData, ImageCategory
 
 
+# Sample: Analyze image in async request
 async def analyze_image_async():
     # analyze image async
     key = os.environ["CONTENT_SAFETY_KEY"]

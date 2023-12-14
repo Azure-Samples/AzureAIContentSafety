@@ -1,10 +1,8 @@
-﻿using System;
-using Azure.AI.ContentSafety;
-
-namespace Azure.AI.ContentSafety.Dotnet.Sample
+﻿namespace Azure.AI.ContentSafety.Dotnet.Sample
 {
     class ContentSafetySampleAnalyzeText
     {
+        // Sample: Analyze text without blocklist
         public static void AnalyzeText()
         {
             // Create Azure AI ContentSafety Client
@@ -13,8 +11,6 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
             string key = Environment.GetEnvironmentVariable("CONTENT_SAFETY_KEY");
 
             ContentSafetyClient client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(key));
-
-            // Example: analyze text without blocklist
 
             string text = "You are an idiot";
 
