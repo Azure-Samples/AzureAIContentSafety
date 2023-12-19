@@ -6,7 +6,15 @@ package org.example;
 
 import com.azure.ai.contentsafety.ContentSafetyClient;
 import com.azure.ai.contentsafety.ContentSafetyClientBuilder;
-import com.azure.ai.contentsafety.models.*;
+import com.azure.ai.contentsafety.models.AddBlockItemsOptions;
+import com.azure.ai.contentsafety.models.AddBlockItemsResult;
+import com.azure.ai.contentsafety.models.AnalyzeTextOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextResult;
+import com.azure.ai.contentsafety.models.RemoveBlockItemsOptions;
+import com.azure.ai.contentsafety.models.TextBlockItem;
+import com.azure.ai.contentsafety.models.TextBlockItemInfo;
+import com.azure.ai.contentsafety.models.TextBlocklist;
+import com.azure.ai.contentsafety.models.TextBlocklistMatchResult;
 import com.azure.core.credential.KeyCredential;
 import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.rest.PagedIterable;
@@ -15,20 +23,24 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.Configuration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class ManageTextBlocklist {
     public static void main(String[] args) {
-        // BEGIN:com.azure.ai.contentsafety.createClient
+        // Create a contentSafety client
         String endpoint = Configuration.getGlobalConfiguration().get("CONTENT_SAFETY_ENDPOINT");
         String key = Configuration.getGlobalConfiguration().get("CONTENT_SAFETY_KEY");
 
         ContentSafetyClient contentSafetyClient = new ContentSafetyClientBuilder()
             .credential(new KeyCredential(key))
             .endpoint(endpoint).buildClient();
-        // END:com.azure.ai.contentsafety.createClient
 
-        // BEGIN:com.azure.ai.contentsafety.createtextblocklist
+        // Create or update text blocklist
         String blocklistName = "TestBlocklist";
         Map<String, String> description = new HashMap<>();
         description.put("description", "Test Blocklist");
@@ -41,9 +53,8 @@ public class ManageTextBlocklist {
         } else if (response.getStatusCode() == 200) {
             System.out.println("\nBlocklist " + blocklistName + " updated.");
         }
-        // END:com.azure.ai.contentsafety.createtextblocklist
 
-        // BEGIN:com.azure.ai.contentsafety.addblockitems
+        // Add blocklist items
         String blockItemText1 = "k*ll";
         String blockItemText2 = "h*te";
         List<TextBlockItemInfo> blockItems = Arrays.asList(new TextBlockItemInfo(blockItemText1).setDescription("Kill word"),
@@ -55,10 +66,8 @@ public class ManageTextBlocklist {
                 System.out.println("BlockItemId: " + addedBlockItem.getBlockItemId() + ", Text: " + addedBlockItem.getText() + ", Description: " + addedBlockItem.getDescription());
             }
         }
-        // END:com.azure.ai.contentsafety.addblockitems
 
-
-        // BEGIN:com.azure.ai.contentsafety.analyzetextwithblocklist
+        // Analyze with blocklist
         // After you edit your blocklist, it usually takes effect in 5 minutes, please wait some time before analyzing with blocklist after editing.
         AnalyzeTextOptions request = new AnalyzeTextOptions("I h*te you and I want to k*ll you");
         request.setBlocklistNames(List.of(blocklistName));
@@ -79,49 +88,41 @@ public class ManageTextBlocklist {
                 System.out.println("BlocklistName: " + matchResult.getBlocklistName() + ", BlockItemId: " + matchResult.getBlockItemId() + ", BlockItemText: " + matchResult.getBlockItemText());
             }
         }
-        // END:com.azure.ai.contentsafety.analyzetextwithblocklist
 
-        // BEGIN:com.azure.ai.contentsafety.listtextblocklists
+        // List text blocklists
         PagedIterable<TextBlocklist> allTextBlocklists = contentSafetyClient.listTextBlocklists();
         System.out.println("\nList Blocklist:");
         for (TextBlocklist blocklist : allTextBlocklists) {
             System.out.println("Blocklist: " + blocklist.getBlocklistName() + ", Description: " + blocklist.getDescription());
         }
-        // END:com.azure.ai.contentsafety.listtextblocklists
 
-        // BEGIN:com.azure.ai.contentsafety.gettextblocklist
+        // Get text blocklist
         TextBlocklist getBlocklist = contentSafetyClient.getTextBlocklist(blocklistName);
         if (getBlocklist != null) {
             System.out.println("\nGet blocklist:");
             System.out.println("BlocklistName: " + getBlocklist.getBlocklistName() + ", Description: " + getBlocklist.getDescription());
         }
-        // END:com.azure.ai.contentsafety.gettextblocklist
 
-        // BEGIN:com.azure.ai.contentsafety.listtextblocklistitems
+        // List blocklist items
         PagedIterable<TextBlockItem> allBlockitems = contentSafetyClient.listTextBlocklistItems(blocklistName);
         System.out.println("\nList BlockItems:");
         for (TextBlockItem blocklistItem : allBlockitems) {
             System.out.println("BlockItemId: " + blocklistItem.getBlockItemId() + ", Text: " + blocklistItem.getText() + ", Description: " + blocklistItem.getDescription());
         }
-        // END:com.azure.ai.contentsafety.listtextblocklistitems
 
-        // BEGIN:com.azure.ai.contentsafety.gettextblocklistitem
+        // Get blocklist item
         String getBlockItemId = addedBlockItems.getValue().get(0).getBlockItemId();
         TextBlockItem getBlockItem = contentSafetyClient.getTextBlocklistItem(blocklistName, getBlockItemId);
         System.out.println("\nGet BlockItem:");
         System.out.println("BlockItemId: " + getBlockItem.getBlockItemId() + ", Text: " + getBlockItem.getText() + ", Description: " + getBlockItem.getDescription());
-        // END:com.azure.ai.contentsafety.gettextblocklistitem
 
-        // BEGIN:com.azure.ai.contentsafety.removeblockitems
+        // Remove blocklist item
         String removeBlockItemId = addedBlockItems.getValue().get(0).getBlockItemId();
         List<String> removeBlockItemIds = new ArrayList<>();
         removeBlockItemIds.add(removeBlockItemId);
         contentSafetyClient.removeBlockItems(blocklistName, new RemoveBlockItemsOptions(removeBlockItemIds));
-        // END:com.azure.ai.contentsafety.removeblockitems
 
-        // BEGIN:com.azure.ai.contentsafety.deletetextblocklist
+        // Delete blocklist
         contentSafetyClient.deleteTextBlocklist(blocklistName);
-        // END:com.azure.ai.contentsafety.deletetextblocklist
-
     }
 }

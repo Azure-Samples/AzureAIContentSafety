@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>azure-ai-contentsafety-samples-1.0.0-beta.1</artifactId>
+    <artifactId>azure-ai-contentsafety-samples-1.0.0</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -17,12 +17,17 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core</artifactId>
-            <version>1.43.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
+            <version>1.45.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
         </dependency>
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-ai-contentsafety</artifactId>
-            <version>1.0.0-beta.1</version>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-identity</artifactId>
+            <version>1.11.1</version> <!-- {x-version-update;com.azure:azure-identity;dependency} -->
         </dependency>
     </dependencies>
     <build>
