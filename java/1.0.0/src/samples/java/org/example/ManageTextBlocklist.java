@@ -40,7 +40,7 @@ public class ManageTextBlocklist {
                 .credential(new KeyCredential(key))
                 .endpoint(endpoint).buildClient();
 
-        // Create or update text blocklist
+        // Sample: Create or modify a blocklist
         String blocklistName = "TestBlocklist";
         Map<String, String> description = new HashMap<>();
         description.put("description", "Test Blocklist");
@@ -54,7 +54,7 @@ public class ManageTextBlocklist {
             System.out.println("\nBlocklist " + blocklistName + " updated.");
         }
 
-        // Add blocklist items
+        // Sample: Add blocklistItems to the list
         String blockItemText1 = "k*ll";
         String blockItemText2 = "h*te";
         List<TextBlocklistItem> blockItems = Arrays.asList(new TextBlocklistItem(blockItemText1).setDescription("Kill word"),
@@ -68,7 +68,7 @@ public class ManageTextBlocklist {
             }
         }
 
-        // Analyze with blocklist
+        // Sample: Analyze text with a blocklist
         // After you edit your blocklist, it usually takes effect in 5 minutes, please wait some time before analyzing with blocklist after editing.
         ContentSafetyClient contentSafetyClient = new ContentSafetyClientBuilder()
                 .credential(new KeyCredential(key))
@@ -92,40 +92,40 @@ public class ManageTextBlocklist {
             }
         }
 
-        // List text blocklists
+        // Sample: List all blocklists
         PagedIterable<TextBlocklist> allTextBlocklists = blocklistClient.listTextBlocklists();
         System.out.println("\nList Blocklist:");
         for (TextBlocklist blocklist : allTextBlocklists) {
             System.out.println("Blocklist: " + blocklist.getName() + ", Description: " + blocklist.getDescription());
         }
 
-        // Get text blocklist
+        // Sample: Get a blocklist by blocklistName
         TextBlocklist getBlocklist = blocklistClient.getTextBlocklist(blocklistName);
         if (getBlocklist != null) {
             System.out.println("\nGet blocklist:");
             System.out.println("BlocklistName: " + getBlocklist.getName() + ", Description: " + getBlocklist.getDescription());
         }
 
-        // List blocklist items
+        // Sample: List all blocklistItems in a list
         PagedIterable<TextBlocklistItem> allBlockitems = blocklistClient.listTextBlocklistItems(blocklistName);
         System.out.println("\nList BlockItems:");
         for (TextBlocklistItem blocklistItem : allBlockitems) {
             System.out.println("BlockItemId: " + blocklistItem.getBlocklistItemId() + ", Text: " + blocklistItem.getText() + ", Description: " + blocklistItem.getDescription());
         }
 
-        // Get blocklist item
+        // Sample: Get a blocklistItem by blocklistName and blocklistItemId
         String getBlockItemId = addedBlockItems.getBlocklistItems().get(0).getBlocklistItemId();
         TextBlocklistItem getBlockItem = blocklistClient.getTextBlocklistItem(blocklistName, getBlockItemId);
         System.out.println("\nGet BlockItem:");
         System.out.println("BlockItemId: " + getBlockItem.getBlocklistItemId() + ", Text: " + getBlockItem.getText() + ", Description: " + getBlockItem.getDescription());
 
-        // Remove blocklist item
+        // Sample: Remove blocklistItems from a blocklist
         String removeBlockItemId = addedBlockItems.getBlocklistItems().get(0).getBlocklistItemId();
         List<String> removeBlockItemIds = new ArrayList<>();
         removeBlockItemIds.add(removeBlockItemId);
         blocklistClient.removeBlocklistItems(blocklistName, new RemoveTextBlocklistItemsOptions(removeBlockItemIds));
 
-        // Delete blocklist
+        // Sample: Delete a list and all of its contents
         blocklistClient.deleteTextBlocklist(blocklistName);
     }
 }
